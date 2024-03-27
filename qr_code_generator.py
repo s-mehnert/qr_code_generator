@@ -1,5 +1,6 @@
 import qrcode
 import os
+from matplotlib.colors import is_color_like
 
 # function to build a qr code
 
@@ -22,19 +23,25 @@ def name_valid(name):
 
 # asking for user input
 
-print("\nWelcome to the QR Code Generator\n")
+print("\n\nWelcome to the QR Code Generator")
 
-data = input("\nPlease enter the text or link you would like to encode into a QR Code.\n> ")
-color = input("\nWhat color shoud the QR Code have?\nThe available options are: \n\n\tblack \n\tblue \n\tred \n\tbrown \n\tgreen \n\nNote that the background will always be white.\n> ")
-name = input("\nGreat, the QR Code will shortly be generated.\nUnder which name should the PNG file be saved?\n> ")
+data = input("\n\nDATA --- Please enter the text or link you would like to encode into a QR Code.\n\n> ")
+
+color = input("\n\nCOLOR --- What color should the QR Code have?\n\nYou can input the color using keywords (red, blue, green) or hex codes (e.g. #ba0048).\nNote that the background will always be white.\n\n> ")
+
+if not is_color_like(color):
+    print(f"\n!!!   Sorry, --- {color}--- is not a valid color. The QR code will be created in black.")
+    color = "black"
+
+name = input("\n\nFILENAME --- Under which name should the PNG file be saved?\n\n> ")
 
 while not name_valid(name):
-    print("\nSorry, that is not a valid file name. \nPlease note that the following characters are not allowed: \\/:*?<>| as well as the space character\nCorrect: test_code --> Wrong: test code")
-    name = input("Please enter a new file name.\n> ")
+    print(f"\n!!!   Sorry, --- {name} --- is not a valid file name. \n\nPlease note that the following characters are not allowed: \\/:*?<>| as well as the space character\nValid: test_code --> Not valid: test code")
+    name = input("\nPlease enter a new file name.\n> ")
 
 qrc = create_qrcode(data, color)
 location = os.getcwd() + "/" + name + ".png"
 
 qrc.save(location)
 
-print("\nThe QR Code has been successfully created. It can be found in the same directory as the QR Code Generator File.")
+print(f"\n\nThe QR Code has been successfully created. \nIt can be found at:\n\n{location}\n")
