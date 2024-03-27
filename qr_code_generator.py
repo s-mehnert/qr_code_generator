@@ -27,7 +27,32 @@ def create_qrcode(data, color):
     img = qr.make_image(fill_color=color, back_color="white")
     return img
 
+def name_valid(name):
+    if len(name) == 0:
+        return False
+    for char in name:
+        if char in '\\/:*?"<>| ':
+            return False
+    return True
 
+# create input logic
+
+print("\nWelcome to the QR Code Generator")
+
+data = input("\nPlease enter the text or link you would like to encode into a QR Code.\n> ")
+color = input("\nWhat color shoud the QR Code have?\nThe available options are: \nblack \nblue \nred \nbrown \ngreen \n\nNote that the background will always be white.\n> ")
+name = input("\nGreat, the QR Code will shortly be generated.\nUnder which name should the PNG file be saved?\n> ")
+
+while not name_valid(name):
+    print("\nSorry, that is not a valid file name. \nPlease note that the following characters are not allowed: \\/:*?<>| as well as the space character\nCorrect: test_code --> Wrong: test code")
+    name = input("Please enter a new file name.\n> ")
+
+qrc = create_qrcode(data, color)
+location = "C:/Users/Peafly/Documents/Projects/Coding/projects/weekly_projects/qr_code_generator__python/" + name + ".png"
+
+qrc.save(location)
+
+print("\nThe QR Code has been successfully created. It can be found in the same directory as the QR Code Generator Python File.")
 
 # testing
 
