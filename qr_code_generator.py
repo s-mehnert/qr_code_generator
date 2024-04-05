@@ -1,21 +1,29 @@
 import qrcode
 import os
 from matplotlib.colors import is_color_like
+from qrcode.main import GenericImage
 
-# function to build a qr code
 
-
-def create_qrcode(data, color):
+def create_qrcode(data: str, color: str) -> GenericImage:
+    """
+    function to build a qr code
+    :param data:
+    :param color:
+    :return:
+    """
     qr = qrcode.QRCode(version=1, box_size=8, border=5)
     qr.add_data(data)
     qr.make(fit=True)
     img = qr.make_image(fill_color=color, back_color="white")
     return img
 
-# helper function to check if file name entered is valid
 
-
-def name_valid(name):
+def is_filename_valid(name: str) -> bool:
+    """
+     helper function to check if file name entered is valid
+    :param name: name of the
+    :return:
+    """
     if len(name) == 0:
         return False
     for char in name:
@@ -38,7 +46,7 @@ if not is_color_like(color):
 
 name = input("\n\nFILENAME --- Under which name should the PNG file be saved?\n\n> ")
 
-while not name_valid(name):
+while not is_filename_valid(name):
     print(f"\n!!!   Sorry, --- {name} --- is not a valid file name. \n\nPlease note that the following characters are not allowed: \\/:*?<>| as well as the space character\nValid: test_code --> Not valid: test code")
     name = input("\nPlease enter a new file name.\n> ")
 
