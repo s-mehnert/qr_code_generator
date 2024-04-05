@@ -4,6 +4,7 @@ from matplotlib.colors import is_color_like
 
 # function to build a qr code
 
+
 def create_qrcode(data, color):
     qr = qrcode.QRCode(version=1, box_size=8, border=5)
     qr.add_data(data)
@@ -12,6 +13,7 @@ def create_qrcode(data, color):
     return img
 
 # helper function to check if file name entered is valid
+
 
 def name_valid(name):
     if len(name) == 0:
@@ -22,6 +24,7 @@ def name_valid(name):
     return True
 
 # asking for user input
+
 
 print("\n\nWelcome to the QR Code Generator")
 
