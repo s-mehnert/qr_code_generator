@@ -24,6 +24,11 @@ Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
 
+## Attribution
+
+This project was inspired by the following [video](https://www.youtube.com/watch?app=desktop&v=SqvVm3QiQVk&t=37s) by ***Code with Tomi***.
+
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
